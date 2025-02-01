@@ -30,3 +30,5 @@ Make sure you have the following installed:
 2. install dependencies: npm install 
 3. Start the development server: npm start
    The application will be available at http://localhost:3000.
+### Deployed Url
+   https://sample-chatbot-project.vercel.app/
