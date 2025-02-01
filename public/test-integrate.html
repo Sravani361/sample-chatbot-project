@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integration Test Result</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-confetti@5.1.0/dist/index.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .success, .failure {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="success" class="success">
+    <h2 class="text-xl font-bold text-green-600">🎉 Integration Successful!</h2>
+    <div id="confetti"></div>
+    <p>Your chatbot is now live on your website.</p>
+    <div class="space-y-4 mt-4">
+    
+      <button
+        onclick="window.location.href='/admin'"
+        class="bg-blue-500 text-white p-2 rounded-md w-full"
+      >
+        Explore Admin Panel
+      </button>
+
+      <button
+        onclick="window.location.href='/chat'"
+        class="bg-blue-700 text-white p-2 rounded-md w-full"
+      >
+        Start Talking to Your Chatbot
+      </button>
+    </div>
+    <div class="space-y-4 mt-4">
+  
+      <button
+        class="bg-blue-500 text-white p-2 rounded-md w-full"
+        onclick="window.open('https://twitter.com/intent/tweet?text=I just integrated a chatbot! 🚀', '_blank')"
+      >
+        Share on Twitter
+      </button>
+      
+      <button
+        class="bg-blue-700 text-white p-2 rounded-md w-full"
+        onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https://yourchatbot.com', '_blank')"
+      >
+        Share on LinkedIn
+      </button>
+    </div>
+  </div>
+
+  <div id="failure" class="failure">
+    <h2 class="text-xl font-bold text-red-600">❌ Chatbot is not detected on your website.</h2>
+    <p>Please ensure you have added the script correctly.</p>
+    <button onclick="window.location.href='/integration-instructions.html'" class="bg-gray-500 text-white p-2 rounded-md mt-4">
+      View Integration Guide
+    </button>
+  </div>
+
+  <script>
+    window.addEventListener("message", function(event) {
+      if (event.origin !== window.location.origin) return;
+
+      const { success } = event.data;
+      if (success) {
+        document.getElementById('success').style.display = 'block';
+        new Confetti({ target: 'confetti' }).render();
+      } else {
+        document.getElementById('failure').style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
